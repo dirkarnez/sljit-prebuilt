@@ -26,10 +26,11 @@ jobs:
           msystem: MINGW64
           install: make autoconf automake libtool autogen perl
           
-      - name: curl x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
+      - name: curl winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip
         shell: cmd
-        run:  cd /d ${{ github.workspace }} && curl https://github.com/2641797006/c/blob/master/GCC-zip/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z?raw=true -L --output x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z && dir && 7z.exe x x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
-      
+        run: |
+          curl https://github.com/brechtsanders/winlibs_mingw/releases/download/11.2.0-12.0.1-9.0.0-r1/winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip -L --output winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip && dir && 7z.exe x winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip
+          
       - name: set PATH, check mingw version, cmake generate, build and install
         shell: msys2 {0}
         run: |
