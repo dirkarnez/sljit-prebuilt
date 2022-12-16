@@ -12,9 +12,8 @@ jobs:
     runs-on: windows-2019
     env:
       libraryName: sljit
-      installationPath: sljit-installation
       tagName: 1.4.2
-      mingwTargetZip: sljit-${{ github.ref_name }}-x86_64-posix-seh-rev0-8.1.0.zip
+      mingwTargetZip: sljit-${{ github.ref_name }}-winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1.zip
     steps:
       - name: git clone
         shell: cmd
@@ -44,12 +43,12 @@ jobs:
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
-          directory: "sljit/bin/${{ env.installationPath }}"
+          directory: "sljit/bin"
           filename: "${{ env.mingwTargetZip }}"
           
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "sljit/bin/${{ env.installationPath }}/${{ env.mingwTargetZip }}"
+          artifacts: "sljit/bin/${{ env.mingwTargetZip }}"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
