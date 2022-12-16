@@ -37,7 +37,7 @@ jobs:
             export PATH="$workspace/mingw64:$workspace/mingw64/bin:$workspace/msys64/usr/bin:/usr/bin" &&
             cd sljit && 
             g++ --version &&
-            make
+            make CC=gcc
             
       - name: Archive Release
         uses: thedoctor0/zip-release@master
